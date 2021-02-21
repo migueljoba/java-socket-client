@@ -17,11 +17,17 @@ public class EchoClient {
     private PrintWriter out;
     private BufferedReader in;
 
-    public void startConnection(String ip, int port) {
+    public void startConnection(String serverAddress, String port) {
+        int portInt = Integer.parseInt(port);
+        startConnection(serverAddress, portInt);
+    }
+
+    public void startConnection(String serverAddress, int serverPort) {
         try {
-            clientSocket = new Socket(ip, port);
+            clientSocket = new Socket(serverAddress, serverPort);
             out = new PrintWriter(clientSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
         } catch (IOException e) {
             LOG.debug("Error when initializing connection", e);
         }

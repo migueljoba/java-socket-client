@@ -4,17 +4,17 @@ import java.util.Random;
 
 public class ClientApp {
 
-    private static int port = 5555;
-
     public static void main(String[] args) {
         test_single_client();
     }
 
     public static void test_single_client() {
         EchoClient client = new EchoClient();
-        client.startConnection("127.0.0.1", port);
+        String serverAddress = PropertiesLoader.getServerAddress();
+        String serverPort = PropertiesLoader.getServerPort();
+        client.startConnection(serverAddress, serverPort);
         int i = 0;
-        while (i< 1000) {
+        while (i < 100) {
             client.sendMessage(generateDataString());
             i++;
         }
