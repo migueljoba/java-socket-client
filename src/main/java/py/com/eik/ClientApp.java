@@ -1,22 +1,28 @@
 package py.com.eik;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class ClientApp {
 
     public static void main(String[] args) {
-        test_single_client();
+        testSingleClient();
     }
 
-    public static void test_single_client() {
+    public static void testSingleClient() {
         EchoClient client = new EchoClient();
         String serverAddress = PropertiesLoader.getServerAddress();
         String serverPort = PropertiesLoader.getServerPort();
         client.startConnection(serverAddress, serverPort);
-        int i = 0;
-        while (i < 100) {
-            client.sendMessage(generateDataString());
-            i++;
+
+        String userInput = "";
+
+        while (!".".equals(userInput)) {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Ingresar cacracter: ");
+            userInput =  sc.next();
+
+            client.sendMessage(userInput + "|" + generateDataString());
         }
 
         client.stopConnection();
