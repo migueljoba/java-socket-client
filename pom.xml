@@ -25,8 +25,15 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                    <!--
+                    Para generar un .jar con nombre personalizado.
+                    Fuente: https://stackoverflow.com/questions/1334999/is-it-possible-to-rename-a-maven-jar-with-dependencies
+                    -->
+                    <finalName>socket-client</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
-            </plugin></plugins>
+            </plugin>
+        </plugins>
     </build>
 
     <dependencies>
